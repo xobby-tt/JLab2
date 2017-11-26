@@ -43,4 +43,12 @@
         <servlet-name>ViewEditServlet</servlet-name>
         <url-pattern>/WEB-INF/edit.html</url-pattern>
     </servlet-mapping>
+    <servlet>
+        <servlet-name>DownloadServlet</servlet-name>
+        <servlet-class>DownloadServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DownloadServlet</servlet-name>
+        <url-pattern>/download.html</url-pattern>
+    </servlet-mapping>
 </web-app>

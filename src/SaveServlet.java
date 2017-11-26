@@ -21,11 +21,11 @@ public class SaveServlet extends HttpServlet {
         object.setAuthor(req.getParameter("author"));
         object.setName(req.getParameter("name"));
 
-        String durate[] = req.getParameter("duration").split(":");
+        String durate[] = req.getParameter("duration").split(":");// ======to do(шаблон) =======
         object.setDuration(new DurationTime(Integer.parseInt(durate[0]), Integer.parseInt(durate[1])));//====to do (маска ввода)===
 
         try {
-            object.setPublication(format1.parse(req.getParameter("publication")));//======to do(адекватное создание даты)========
+            object.setPublication(format1.parse(format1.format( new Date() )));
         } catch (ParseException e) {
             e.printStackTrace();
         }

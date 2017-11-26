@@ -1,4 +1,6 @@
+import java.text.ParseException;
 import java.util.Date;
+import java.text.SimpleDateFormat;
 
 public class MyObject {
     private Integer id;
@@ -7,9 +9,7 @@ public class MyObject {
     private DurationTime duration;
     private Date publication; //==============to do (базу данных)============
     private Integer downloads = 0;
-    private String popularity; //=======================to do ()=============================
-
-
+    private long popularity; //=======================to do ()=============================
 
     public Integer getId() {
         return id;
@@ -57,4 +57,22 @@ public class MyObject {
 
     public Integer getDownloads() {return downloads;}
 
+    public void setPopularity() {
+        SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
+        Date date1 = null;
+        Date date2 = null;
+        try {
+            date1 = format1.parse(format1.format( new Date() ));
+            date2 = format1.parse(format1.format( publication ));
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+        long difference = date1.getTime() - date2.getTime();
+        long days =  difference / (24 * 60 * 60 * 1000);
+        this.popularity = downloads/days;
+    }
+
+    public long getPopularity() {
+        return popularity;
+    }
 }

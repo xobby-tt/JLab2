@@ -42,10 +42,6 @@ public class ViewEditServlet extends HttpServlet {
         w.printf("<INPUT type=\"text\" name=\"duration\" value=\"%s\">\n",
                 object != null ? object.getDuration().toString() : new String()); //============= to do (маску) =========
 
-        w.println("<P>Дата публикации:</P>");
-        w.printf("<INPUT type=\"text\" name=\"publication\" value=\"%s\">\n",
-                object != null ? format1.format(object.getPublication()) : new String());
-
         w.println("<BUTTON type=\"submit\">Сохранить</BUTTON>");
         w.println("<A href=\"index.html\">Назад</A>");
         w.println("</FORM>");

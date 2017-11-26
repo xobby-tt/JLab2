@@ -23,7 +23,7 @@ public class ViewListServlet extends HttpServlet {
         w.println("<HTML>");
         w.println("<HEAD>");
         w.println("<META http-equiv=\"Content-Type\"");
-        w.println("      content=\"text/html; charset=UTF-8\">");
+        w.println("content=\"text/html; charset=UTF-8\">");
         w.println("<TITLE>Тест</TITLE>");
         w.println("<STYLE>");
         w.println("TABLE {");
@@ -37,7 +37,7 @@ public class ViewListServlet extends HttpServlet {
         w.println("</HEAD>");
         w.println("<BODY>");
         w.println("<TABLE>");
-        w.println("<TR><TH>id</TH><TH>Автор(группа)</TH><TH>Название</TH><TH>Продолжительность</TH><TH>Дата публикации</TH><TH>Скачиваний</TH></TR>");
+        w.println("<TR><TH>id</TH><TH>Автор(группа)</TH><TH>Название</TH><TH>Продолжительность</TH><TH>Дата публикации</TH><TH>Популярность</TH><TH>Скачиваний</TH><TH></TH></TR>");
         for(MyObject object : objects) {
             w.print("<TR>");
             w.printf("<TD>%s</TD>", object.getId());//=====to do(явная передача индеска)=====
@@ -46,7 +46,10 @@ public class ViewListServlet extends HttpServlet {
             w.printf("<TD>%s</TD>", object.getName());
             w.printf("<TD>%s</TD>", object.getDuration().toString());
             w.printf("<TD>%s</TD>", format1.format(object.getPublication()));
+            object.setPopularity();
+            w.printf("<TD>%d</TD>", object.getPopularity());
             w.printf("<TD>%d</TD>", object.getDownloads());
+            w.printf("<TD><A href=\"download.html?id=%d\">Скачать</A></TD>", object.getId());
             w.println("</TR>");
         }
         w.println("</TABLE>");

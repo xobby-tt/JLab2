@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns="http://xmlns.jcp.org/xml/ns/javaee"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee http://xmlns.jcp.org/xml/ns/javaee/web-app_3_1.xsd"
+         version="3.1">
+    <servlet>
+        <servlet-name>ListServlet</servlet-name>
+        <servlet-class>ListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ListServlet</servlet-name>
+        <url-pattern>/index.html</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>EditServlet</servlet-name>
+        <servlet-class>EditServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>EditServlet</servlet-name>
+        <url-pattern>/edit.html</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>SaveServlet</servlet-name>
+        <servlet-class>SaveServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>SaveServlet</servlet-name>
+        <url-pattern>/save.html</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ViewListServelt</servlet-name>
+        <servlet-class>ViewListServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewListServelt</servlet-name>
+        <url-pattern>/WEB-INF/index.html</url-pattern>
+    </servlet-mapping>
+    <servlet>
+        <servlet-name>ViewEditServlet</servlet-name>
+        <servlet-class>ViewEditServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>ViewEditServlet</servlet-name>
+        <url-pattern>/WEB-INF/edit.html</url-pattern>
+    </servlet-mapping>
+</web-app>

@@ -9,7 +9,20 @@ public class DurationTime {
         seconds = sec;
     }
 
+    public DurationTime() {
+        minutes = null;
+        seconds = null;
+    }
+
+    public boolean correctTime(Integer time) {
+        if(time >= 60 || time < 0) {
+            return false;
+        }
+        return true;
+    }
+
     public void setMinutes(Integer min) {
+
         minutes = min;
     }
     public void setSeconds(Integer sec) {

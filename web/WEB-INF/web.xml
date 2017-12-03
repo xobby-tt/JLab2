@@ -51,4 +51,13 @@
         <servlet-name>DownloadServlet</servlet-name>
         <url-pattern>/download.html</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>DeleteServlet</servlet-name>
+        <servlet-class>DeleteServlet</servlet-class>
+    </servlet>
+    <servlet-mapping>
+        <servlet-name>DeleteServlet</servlet-name>
+        <url-pattern>/delete.html</url-pattern>
+    </servlet-mapping>
 </web-app>

@@ -11,11 +11,19 @@ import java.text.SimpleDateFormat;
 public class ViewEditServlet extends HttpServlet {
 
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
-        MyObject object = (MyObject)req.getAttribute("object");
+      serv(req,resp);
+    }
+    @Override
+    protected void doPost(HttpServletRequest req, HttpServletResponse resp)
+            throws ServletException, IOException {
+			serv(req,resp);
+    
+    }
+	private void serv(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException{
+		    MyObject object = (MyObject)req.getAttribute("object");
+        Boolean flag = (Boolean)req.getAttribute("flag");
 
         resp.setCharacterEncoding("UTF-8");
-
-        SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
 
         PrintWriter w = resp.getWriter();
         w.println("<HTML>");
@@ -26,7 +34,7 @@ public class ViewEditServlet extends HttpServlet {
         w.println("</HEAD>");
         w.println("<BODY>");
         w.println("<FORM action=\"save.html\" method=\"post\">");
-        if(object != null) {
+        if(object != null &&  object.getId()!=null) {
             w.printf("<INPUT type=\"hidden\" name=\"id\" value=\"%s\">\n",
                     object.getId().toString());
         }
@@ -41,11 +49,13 @@ public class ViewEditServlet extends HttpServlet {
         w.println("<P>Длительность:</P>");
         w.printf("<INPUT type=\"text\" name=\"duration\" value=\"%s\">\n",
                 object != null ? object.getDuration().toString() : new String()); //============= to do (маску) =========
+        if(!flag)
+            w.println("<span>Заполните поле правильно</span>");
 
         w.println("<BUTTON type=\"submit\">Сохранить</BUTTON>");
         w.println("<A href=\"index.html\">Назад</A>");
         w.println("</FORM>");
         w.println("</BODY>");
         w.println("</HTML>");
-    }
+	}
 }

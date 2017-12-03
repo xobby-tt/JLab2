@@ -7,6 +7,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.util.Collection;
 import java.util.Date;
 
 public class SaveServlet extends HttpServlet {
@@ -22,7 +23,21 @@ public class SaveServlet extends HttpServlet {
         object.setName(req.getParameter("name"));
 
         String durate[] = req.getParameter("duration").split(":");// ======to do(шаблон) =======
-        object.setDuration(new DurationTime(Integer.parseInt(durate[0]), Integer.parseInt(durate[1])));//====to do (маска ввода)===
+        DurationTime duration = new DurationTime();
+        Boolean flag = true;
+        flag = duration.correctTime(Integer.parseInt(durate[0]));
+        if (flag)
+            flag = duration.correctTime(Integer.parseInt(durate[1]));
+        if (!flag) {
+            object.setDuration(null);
+            req.setAttribute("flag",flag);
+            req.setAttribute("object", object);
+            getServletContext().getRequestDispatcher("/WEB-INF/edit.html").forward(req, resp);
+            return;
+        }
+        duration.setMinutes(Integer.parseInt(durate[0]));
+        duration.setSeconds(Integer.parseInt(durate[1]));
+        object.setDuration(duration);//====to do (маска ввода)===
 
         try {
             object.setPublication(format1.parse(format1.format( new Date() )));

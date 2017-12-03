@@ -14,7 +14,11 @@ public class EditServlet extends HttpServlet {
         try {
             MyObject object = Storage.readById(Integer.parseInt(req.getParameter("id")));
             req.setAttribute("object", object);
-        } catch(NumberFormatException e) {}
+        } catch(NumberFormatException e) {
+        }
+        Boolean flag = true;
+        req.setAttribute("flag", flag);
+
         getServletContext().getRequestDispatcher("/WEB-INF/edit.html").forward(req, resp);
     }
 }

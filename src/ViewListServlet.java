@@ -36,25 +36,40 @@ public class ViewListServlet extends HttpServlet {
         w.println("</STYLE>");
         w.println("</HEAD>");
         w.println("<BODY>");
+        w.println("<FORM action=\"delete.html\" method=\"post\">");
+
         w.println("<TABLE>");
-        w.println("<TR><TH>id</TH><TH>Автор(группа)</TH><TH>Название</TH><TH>Продолжительность</TH><TH>Дата публикации</TH><TH>Популярность</TH><TH>Скачиваний</TH><TH></TH></TR>");
+        w.println("<TR><TH></TH><TH>id</TH><TH>Автор(группа)</TH><TH>Название</TH><TH>Продолжительность</TH><TH>Дата публикации</TH><TH>Популярность</TH><TH>Скачиваний</TH><TH></TH></TR>");
+        //int counter = 0;
         for(MyObject object : objects) {
+
             w.print("<TR>");
+            w.printf("<TD>");
+            w.printf("<INPUT type=\"checkbox\" name=\"id\" value=\"%d\">",
+                    object.getId());
+            w.printf("</TD>");
             w.printf("<TD>%s</TD>", object.getId());//=====to do(явная передача индеска)=====
             w.printf("<TD><A href=\"edit.html?id=%d\">%s</A></TD>",//==========to do( клик на всю строку)=============
                     object.getId(), object.getAuthor());
             w.printf("<TD>%s</TD>", object.getName());
             w.printf("<TD>%s</TD>", object.getDuration().toString());
             w.printf("<TD>%s</TD>", format1.format(object.getPublication()));
+//            if(counter == 1) {
+//                int a = 5;
+//            }
             object.setPopularity();
             w.printf("<TD>%d</TD>", object.getPopularity());
             w.printf("<TD>%d</TD>", object.getDownloads());
             w.printf("<TD><A href=\"download.html?id=%d\">Скачать</A></TD>", object.getId());
             w.println("</TR>");
+            //counter++;
         }
         w.println("</TABLE>");
 
-        w.println("<P><A href=\"edit.html\">Добавить</A></P>");
+        w.println("<P>");
+        w.println("<A href=\"edit.html\">Добавить</A>");
+        w.println("<BUTTON type=\"submit\">Удалить</BUTTON>");
+        w.println("</P>");
 
         w.println("</BODY>");
         w.println("</HTML>");

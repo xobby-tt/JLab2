@@ -18,7 +18,7 @@ public class Storage {
 
         SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
         try {
-            object.setPublication(format1.parse("12.10.2017")); //========to do (адекватное создание даты) ========
+            object.setPublication(format1.parse("12.10.2017"));
         } catch (ParseException e) {
             e.printStackTrace();
         }
@@ -34,13 +34,9 @@ public class Storage {
     }
 
     public static void create(MyObject object) {
-        /* минимальное значение идентификатора */
         Integer id = 1;
-        /* множество идентификаторов всех объектов в списке */
         Set<Integer> ids = objects.keySet();
         if(!ids.isEmpty()) {
-            /* вычисление идентификатора, на 1 большего
-             * максимального из существующего */
             id += Collections.max(ids);
         }
         object.setId(id);

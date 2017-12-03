@@ -9,7 +9,7 @@ public class MyObject {
     private DurationTime duration;
     private Date publication; //==============to do (базу данных)============
     private Integer downloads = 0;
-    private long popularity; //=======================to do ()=============================
+    private long popularity;
 
     public Integer getId() {
         return id;
@@ -69,7 +69,11 @@ public class MyObject {
         }
         long difference = date1.getTime() - date2.getTime();
         long days =  difference / (24 * 60 * 60 * 1000);
-        this.popularity = downloads/days;
+        try {
+            this.popularity = downloads / days;
+        } catch (ArithmeticException e) {
+            this.popularity = 0;
+        }
     }
 
     public long getPopularity() {

@@ -36,6 +36,7 @@ public class ViewEditServlet extends HttpServlet {
         w.println("</HEAD>");
         w.println("<BODY>");
         w.println("<FORM action=\"save.html\" method=\"post\">");
+
         if(object != null &&  object.getId()!=null) {
             w.printf("<INPUT type=\"hidden\" name=\"id\" value=\"%s\">\n",
                     object.getId().toString());
@@ -53,7 +54,7 @@ public class ViewEditServlet extends HttpServlet {
         boolean flag = (boolean)errorsView.get("wrongDuration");
         w.println("<P>Длительность:</P>");
         w.printf("<INPUT type=\"text\" name=\"duration\" value=\"%s\">\n",
-                (object != null && !flag)? object.getDuration().toString() : new String()); //============= to do (маску) =========
+                (object != null && Storage.readById(object.getId()) != null)? object.getDuration().toString() : new String()); //============= to do (маску) =========
         if(flag)
             w.println("<span style='color: red;'>Заполните поле правильно</span>");
 

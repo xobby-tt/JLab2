@@ -37,7 +37,6 @@ public class SaveServlet extends HttpServlet {
         object.setName(req.getParameter("name"));
 
         if (object.getName().trim().length() == 0 || object.getAuthor().trim().length() == 0) {
-            object = null;
             errorsView.replace("emptyField", true);
             redirect(req, resp, errorsView, object);
             return;
@@ -69,7 +68,6 @@ public class SaveServlet extends HttpServlet {
         duration.setSeconds(Integer.parseInt(durate[durate.length - 1]));
         errorsView.replace("wrongDuration", !duration.correctTime());
 
-
         if (errorsView.get("wrongDuration")) {
             redirect(req, resp, errorsView, object);
             return;
@@ -87,6 +85,7 @@ public class SaveServlet extends HttpServlet {
     }
 
     private void redirect(HttpServletRequest req, HttpServletResponse resp, HashMap flag, MyObject object) throws ServletException, IOException {
+        Storage.delete(object.getId());
         req.setAttribute("errorsView",flag);
         req.setAttribute("object", object);
         getServletContext().getRequestDispatcher("/WEB-INF/edit.html").forward(req, resp);

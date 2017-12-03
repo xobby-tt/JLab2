@@ -17,7 +17,7 @@ public class ViewListServlet extends HttpServlet {
         Collection<MyObject> objects = (Collection<MyObject>)req.getAttribute("objects");
         resp.setCharacterEncoding("UTF-8");
 
-        SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
+
 
         PrintWriter w = resp.getWriter();
         w.println("<HTML>");
@@ -40,7 +40,7 @@ public class ViewListServlet extends HttpServlet {
 
         w.println("<TABLE>");
         w.println("<TR><TH></TH><TH>id</TH><TH>Автор(группа)</TH><TH>Название</TH><TH>Продолжительность</TH><TH>Дата публикации</TH><TH>Популярность</TH><TH>Скачиваний</TH><TH></TH></TR>");
-        //int counter = 0;
+
         for(MyObject object : objects) {
 
             w.print("<TR>");
@@ -53,16 +53,12 @@ public class ViewListServlet extends HttpServlet {
                     object.getId(), object.getAuthor());
             w.printf("<TD>%s</TD>", object.getName());
             w.printf("<TD>%s</TD>", object.getDuration().toString());
-            w.printf("<TD>%s</TD>", format1.format(object.getPublication()));
-//            if(counter == 1) {
-//                int a = 5;
-//            }
-            object.setPopularity();
+            w.printf("<TD>%s</TD>", object.getPublication());
             w.printf("<TD>%d</TD>", object.getPopularity());
             w.printf("<TD>%d</TD>", object.getDownloads());
             w.printf("<TD><A href=\"download.html?id=%d\">Скачать</A></TD>", object.getId());
             w.println("</TR>");
-            //counter++;
+
         }
         w.println("</TABLE>");
 

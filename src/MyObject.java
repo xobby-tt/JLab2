@@ -43,8 +43,9 @@ public class MyObject {
         this.duration = duration;
     }
 
-    public Date getPublication() {
-        return publication;
+    public String getPublication() {
+        SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
+        return format1.format(publication);
     }
 
     public void setPublication(Date publication) {
@@ -52,12 +53,9 @@ public class MyObject {
     }
 
     public void incrementDownloads() {
+
         ++downloads;
-    }
 
-    public Integer getDownloads() {return downloads;}
-
-    public void setPopularity() {
         SimpleDateFormat format1 = new SimpleDateFormat("dd.MM.yyyy");
         Date date1 = null;
         Date date2 = null;
@@ -72,8 +70,14 @@ public class MyObject {
         try {
             this.popularity = downloads / days;
         } catch (ArithmeticException e) {
-            this.popularity = 0;
+            this.popularity = downloads;
         }
+    }
+
+    public Integer getDownloads() {return downloads;}
+
+    public void setPopularity() {
+
     }
 
     public long getPopularity() {

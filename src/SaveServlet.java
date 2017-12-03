@@ -7,7 +7,6 @@ import javax.servlet.http.HttpServletResponse;
 
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
-import java.util.Collection;
 import java.util.Date;
 import java.util.HashMap;
 
@@ -38,6 +37,7 @@ public class SaveServlet extends HttpServlet {
         object.setName(req.getParameter("name"));
 
         if (object.getName().trim().length() == 0 || object.getAuthor().trim().length() == 0) {
+            object = null;
             errorsView.replace("emptyField", true);
             redirect(req, resp, errorsView, object);
             return;

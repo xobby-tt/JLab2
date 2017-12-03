@@ -24,7 +24,6 @@ public class EditServlet extends HttpServlet {
         errorsView.put("emptyField", false);
         errorsView.put("wrongDuration", false);
 
-        //Boolean flag = true;
         req.setAttribute("errorsView", errorsView);
 
         getServletContext().getRequestDispatcher("/WEB-INF/edit.html").forward(req, resp);
